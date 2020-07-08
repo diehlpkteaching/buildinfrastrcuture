@@ -22,6 +22,4 @@ jobs:
                         docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
                         docker push ${IMAGE_NAME}
                         docker login docker.pkg.github.com --username diehlpk -p ${TOKEN}
-                        docker tag ${IMAGE_NAME} docker.pkg.github.com/diehlpkteaching/buildinfrastructure/teaching:latest
-                        docker push docker.pkg.github.com/diehlpkteaching/buildinfrastructure/teaching:latest
                     fi
