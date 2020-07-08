@@ -1,0 +1,27 @@
+# Copyright (c) 2019 Patrick Diehl
+
+version: 2
+jobs:
+    build:
+        docker:
+            - image: docker:17.05.0-ce-git
+        environment:
+            IMAGE_FOLDER_NAME: Docker
+            IMAGE_NAME: diehlpk/teaching:latest
+        steps:
+            - checkout
+            - setup_remote_docker
+            - run:
+                name: Building Docker Image
+                command: |
+                    docker build -t ${IMAGE_NAME} ${IMAGE_FOLDER_NAME}
+                    docker images
+            - deploy:
+                command: |
+                    if [ "${CIRCLE_BRANCH}" == "master" ]; then
+                        docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
+                        docker push ${IMAGE_NAME}
+                        docker login docker.pkg.github.com --username diehlpk -p ${TOKEN}
+                        docker tag ${IMAGE_NAME} docker.pkg.github.com/diehlpkteaching/buildinfrastructure/teaching:latest
+                        docker push docker.pkg.github.com/diehlpkteaching/buildinfrastructure/teaching:latest
+                    fi
