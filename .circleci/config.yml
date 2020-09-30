@@ -10,8 +10,6 @@ jobs:
             IMAGE_NAME: diehlpk/teaching:latest
         steps:
             - checkout
-            - setup_remote_docker:
-                version: 19.03.12
             - run:
                 name: Building Docker Image
                 command: |
