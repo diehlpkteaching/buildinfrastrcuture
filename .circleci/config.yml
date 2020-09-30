@@ -3,7 +3,7 @@
 version: 2
 jobs:
     build:
-       machine:
+        machine:
             image: ubuntu-2004:202008-01
             docker_layer_caching: true
         environment:
