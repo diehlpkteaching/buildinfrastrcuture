@@ -3,14 +3,17 @@
 version: 2
 jobs:
     build:
-        docker:
-            - image: ubuntu-1604:202007-01
+       machine:
+              image: ubuntu-2004:202008-01
+              docker_layer_caching: true
         environment:
             IMAGE_FOLDER_NAME: Docker
             IMAGE_NAME: diehlpk/teaching:latest
         steps:
             - checkout
-            - setup_remote_docker
+            - setup_remote_docker:
+              version: 19.03.12
+              docker_layer_caching: true
             - run:
                 name: Building Docker Image
                 command: |
