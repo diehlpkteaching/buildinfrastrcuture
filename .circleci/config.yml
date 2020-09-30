@@ -4,7 +4,7 @@ version: 2
 jobs:
     build:
         docker:
-            - image: docker:17.05.0-ce-git
+            - image: docker:19.03.12-ce-git
         environment:
             IMAGE_FOLDER_NAME: Docker
             IMAGE_NAME: diehlpk/teaching:latest
