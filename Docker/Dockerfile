@@ -1,4 +1,4 @@
-From fedora:32
+From fedora:33
 MAINTAINER Patrick Diehl <patrickdiehl@lsu.edu>
 
 RUN dnf update -y
